@@ -7,7 +7,7 @@ function handleSubmit(event) {
     const nameInput = event.target.nameInput.value;
     const messageInputValue = messageInput.value; 
 
-    fetch('/api/messages', {
+    fetch('/messages', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ function createMessageElement(message) {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', async () => {
-        await fetch(`/api/messages/${message.id}`, { method: 'DELETE' });
+        await fetch(`/messages/${message.id}`, { method: 'DELETE' });
         fetchMessages();
     });
     li.appendChild(deleteButton);
@@ -41,7 +41,7 @@ function createMessageElement(message) {
     const likeButton = document.createElement('button');
     likeButton.textContent = 'Like';
     likeButton.addEventListener('click', async () => {
-        await fetch(`/api/messages/${message.id}/like`, { method: 'POST' });
+        await fetch(`/messages/${message.id}/like`, { method: 'POST' });
         fetchMessages();
     });
     li.appendChild(likeButton);
@@ -60,7 +60,7 @@ form.addEventListener('submit', handleSubmit);
 // Function to fetch messages from the server and display them
 async function fetchMessages() {
     try {
-        const response = await fetch('/api/messages');
+        const response = await fetch('/messages');
         if (!response.ok) {
             throw new Error('Failed to fetch messages');
         }

@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyPpprser from 'body-parser';
 import cors from 'cors';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
@@ -10,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const DB_FILE = 'messages.db';
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 let db;
 
