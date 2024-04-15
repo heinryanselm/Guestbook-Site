@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import sqlite3 from 'sqlite3';
-import sqlite from 'sqlite';
 import { open } from 'sqlite';
 import { v4 as uuidv4 } from 'uuid';
 
