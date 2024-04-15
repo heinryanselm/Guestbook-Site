@@ -1,5 +1,5 @@
 import express from 'express';
-import bodyParser from 'body-parser';
+import bodyPpprser from 'body-parser';
 import cors from 'cors';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-app.post('/api/messages', async (req, res) => {
+app.post('/messages', async (req, res) => {
     const { name, message } = req.body;
     if (!name || !message) {
         return res.status(400).json({ error: 'Name and message are required' });
@@ -65,7 +65,7 @@ app.post('/api/messages', async (req, res) => {
     }
 });
 
-app.get('/api/messages', async (req, res) => {
+app.get('/messages', async (req, res) => {
     try {
         const messages = await db.all('SELECT * FROM messages');
         res.json(messages);
@@ -75,7 +75,7 @@ app.get('/api/messages', async (req, res) => {
     }
 });
 
-app.delete('/api/messages/:id', async (req, res) => {
+app.delete('/messages/:id', async (req, res) => {
     const { id } = req.params;
     try {
         await db.run('DELETE FROM messages WHERE id = ?', id);
@@ -87,7 +87,7 @@ app.delete('/api/messages/:id', async (req, res) => {
     }
 });
 
-app.post('/api/messages/:id/like', async (req, res) => {
+app.post('/messages/:id/like', async (req, res) => {
     const { id } = req.params;
     try {
         await db.run('UPDATE messages SET likes = likes + 1 WHERE id = ?', id);
